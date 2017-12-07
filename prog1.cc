@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <functional>
+#include <sys/socket.h>
 
 using std::string;
 using std::cin;
@@ -94,8 +96,8 @@ void test_string() {
     cout << str << endl;
 }
 
-void test_vector(){
-    vector<int> ivec {1, 2, 3};
+void test_vector() {
+    vector<int> ivec{1, 2, 3};
     auto b = ivec.begin(), e = ivec.end();
     cout << *b << endl;
 
@@ -117,11 +119,18 @@ void test_vector(){
     }
 }
 
+bool check_size(const string &s, string::size_type sz) {
+    return s.size() >= sz;
+}
+
 int main() {
 //    references();
 //    pointers();
 //    return header();
 //    test_vector();
+
+    auto check6 = bind(check_size, std::placeholders::_1, 6);
+    bool b1 = check6(string("hello"));
 
     Screen myScreen(5, 3);
     const Screen blank(5, 3);
