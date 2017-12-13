@@ -66,8 +66,3 @@ std::ostream &print(std::ostream &os, const QueryResult &qr) {
     }
     return os;
 }
-
-int main(){
-    std::ifstream infile("StrBlob.cpp");
-    runQueries(infile);
-}

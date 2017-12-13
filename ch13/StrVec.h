@@ -17,9 +17,9 @@ public:
 
     StrVec(StrVec &&s) noexcept ;
 
-    StrVec &operator=(const StrVec &);
+    StrVec &operator=(const StrVec &) noexcept ;
 
-    StrVec &operator=(StrVec &&);
+    StrVec &operator=(StrVec &&) noexcept ;
 
     ~StrVec();
 

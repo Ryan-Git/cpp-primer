@@ -41,7 +41,7 @@ StrVec::~StrVec() {
     free();
 }
 
-StrVec &StrVec::operator=(const StrVec &rhs) {
+StrVec &StrVec::operator=(const StrVec &rhs) noexcept {
     auto data = alloc_n_copy(rhs.begin(), rhs.end());
     free();
     elements = data.first;
