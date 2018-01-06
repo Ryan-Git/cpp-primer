@@ -25,7 +25,11 @@ public:
         return contents[cursor];
     }
 
-    inline char get(Pos ht, Pos wd) const;
+    Pos get_cursor() const {
+        return cursor;
+    }
+
+    char get(Pos ht, Pos wd) const;
 
     Screen &move(Pos r, Pos c);
 
@@ -43,10 +47,31 @@ public:
         return *this;
     }
 
+    static const std::string Screen::*data() {
+        return &Screen::contents;
+    }
+
+    Screen &home();
+
+    Screen &forward();
+
+    Screen &back();
+
+    Screen &up();
+
+    Screen &down();
+
+    using Action = Screen &(Screen::*)();
+    enum Directions {
+        HOME, FORWARD, BACK, UP, DOWN
+    };
+    Screen& move(Directions);
+
 private:
     Pos cursor = 0;
     Pos height = 0, width = 0;
     std::string contents;
+    static Action Menu[];
 
     void do_display(std::ostream &os) const {
         os << contents;
